@@ -1,0 +1,22 @@
+plugins {
+    id 'java'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    maven { url 'https://jitpack.io' }
+}
+
+dependencies {
+    implementation 'junit:junit:4.12'
+    testImplementation group: 'junit', name: 'junit', version: '4.12'
+    implementation 'com.github.ntedgi:cld3-kotlin:1.0.2'
+    implementation 'org.apache.solr:solr-core:8.7.0'
+    implementation 'log4j:log4j:1.2.17'
+    implementation 'org.apache.solr:solr-langid:8.7.0'
+    implementation 'org.apache.solr:solr-test-framework:8.7.0'
+}
+
