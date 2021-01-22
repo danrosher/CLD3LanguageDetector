@@ -27,7 +27,6 @@ public class CLD3LanguageDetectorUpdateProcessor extends LanguageIdentifierUpdat
     protected List<DetectedLanguage> detectLanguage(Reader solrDocReader) {
         List<DetectedLanguage> languages = new ArrayList<>();
         String content = SolrInputDocumentReader.asString(solrDocReader);
-        //System.out.println("content:"+content);
         if (content.length() != 0) {
             languages = ld.findTopNMostFreqLangs(content,1)
                 .stream()
