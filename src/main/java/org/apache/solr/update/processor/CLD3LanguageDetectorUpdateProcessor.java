@@ -16,19 +16,20 @@ import java.util.stream.Collectors;
 public class CLD3LanguageDetectorUpdateProcessor extends LanguageIdentifierUpdateProcessor {
 
     private static final Logger log = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
+    private final LangDetect ld;
 
     public CLD3LanguageDetectorUpdateProcessor(SolrQueryRequest req, SolrQueryResponse rsp, UpdateRequestProcessor next) {
         super(req, rsp, next);
+        ld = new LangDetect();
     }
 
     @Override
     protected List<DetectedLanguage> detectLanguage(Reader solrDocReader) {
         List<DetectedLanguage> languages = new ArrayList<>();
         String content = SolrInputDocumentReader.asString(solrDocReader);
+        //System.out.println("content:"+content);
         if (content.length() != 0) {
-            LangDetect ld = new LangDetect();
-            List<LangDetectResponse> langs = ld.findTopNMostFreqLangs(content,1);
-            languages = langs
+            languages = ld.findTopNMostFreqLangs(content,1)
                 .stream()
                 .map(d -> new DetectedLanguage(d.getLanguage(),d.getProbability()+0D))
                 .collect(Collectors.toList());

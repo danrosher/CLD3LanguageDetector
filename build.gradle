@@ -18,5 +18,7 @@ dependencies {
     implementation 'log4j:log4j:1.2.17'
     implementation 'org.apache.solr:solr-langid:8.7.0'
     implementation 'org.apache.solr:solr-test-framework:8.7.0'
+    compile 'org.powermock:powermock-module-junit4:2.0.9'
+    compile 'org.powermock:powermock-api-mockito2:2.0.9'
 }
 
